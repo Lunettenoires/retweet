@@ -17,15 +17,15 @@ or [read it online](https://retweet.readthedocs.org/en/latest/).
         # # or
         # python3.4 setup.py install --install-scripts=/usr/bin
 
-### Use Retweeet
+### Use Retweet
 
 * Create or modify retweet.ini file in order to configure Retweet:
 
-        > [main]
-        > consumer_key=ml9jaiBnf3pmU9uIrKNIxAr3v
-        > consumer_secret=8Cmljklzerkhfer4hlj3ljl2hfvc123rezrfsdctpokaelzerp
-        > access_token=213416590-jgJnrJG5gz132nzerl5zerwi0ahmnwkfJFN9nr3j
-        > access_token_secret=3janlPMqDKlunJ4Hnr90k2bnfk3jfnwkFjeriFZERj32Z
+        [main]
+        consumer_key=ml9jaiBnf3pmU9uIrKNIxAr3v
+        consumer_secret=8Cmljklzerkhfer4hlj3ljl2hfvc123rezrfsdctpokaelzerp
+        access_token=213416590-jgJnrJG5gz132nzerl5zerwi0ahmnwkfJFN9nr3j
+        access_token_secret=3janlPMqDKlunJ4Hnr90k2bnfk3jfnwkFjeriFZERj32Z
 
 * Launch Retweet
 
