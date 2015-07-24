@@ -12,16 +12,16 @@ class Twitter:
     '''Twitter class'''
     def __init__(self):
         '''Constructor of the Twitter class'''
-        pathtoconf = 'retweet.ini'
-        if not os.path.exists(pathtoconf):
+        __pathtoconf = sys.argv[-1]
+        if not os.path.exists(__pathtoconf):
             print('the path you provided for yaspe configuration file does not exists')
             sys.exit(1)
-        if not os.path.isfile(pathtoconf):
+        if not os.path.isfile(__pathtoconf):
             print('the path you provided for yaspe configuration is not a file')
             sys.exit(1)
         __config = ConfigParser.ConfigParser()
         try:
-            with open(pathtoconf) as __conffile:
+            with open(__pathtoconf) as __conffile:
                 __config.readfp(__conffile)
                 if __config.has_section('main'):
                     consumer_key = __config.get('main','consumer_key')

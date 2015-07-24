@@ -29,7 +29,7 @@ or [read it online](https://retweet.readthedocs.org/en/latest/).
 
 * Launch Retweet
 
-        $ retweet
+        $ retweet /path/to/retweet.ini
 
 ### Authors
 
