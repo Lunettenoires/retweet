@@ -22,6 +22,7 @@ or [read it online](https://retweet.readthedocs.org/en/latest/).
 * Create or modify retweet.ini file in order to configure Retweet:
 
         [main]
+        screen_name_of_the_user_to_retweet=journalduhacker
         consumer_key=ml9jaiBnf3pmU9uIrKNIxAr3v
         consumer_secret=8Cmljklzerkhfer4hlj3ljl2hfvc123rezrfsdctpokaelzerp
         access_token=213416590-jgJnrJG5gz132nzerl5zerwi0ahmnwkfJFN9nr3j

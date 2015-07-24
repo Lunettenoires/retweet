@@ -24,6 +24,7 @@ class Twitter:
             with open(__pathtoconf) as __conffile:
                 __config.readfp(__conffile)
                 if __config.has_section('main'):
+                    self.user_to_retweet = __config.get('main','screen_name_of_the_user_to_retweet')
                     consumer_key = __config.get('main','consumer_key')
                     consumer_secret = __config.get('main','consumer_secret')
                     access_token = __config.get('main','access_token')
@@ -41,7 +42,7 @@ class Twitter:
     def main(self):
         '''lalalal'''
         # get the 20 last tweets
-        __lasttweets = self.api.user_timeline('journalduhacker')
+        __lasttweets = self.api.user_timeline(self.user_to_retweet)
         __lasttweetidfile = 'lastsenttweetid'
 
         if os.path.exists(__lasttweetidfile) and os.path.isfile(__lasttweetidfile):
