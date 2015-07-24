@@ -1,18 +1,37 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import ConfigParser
 import os.path
 import sys
 import tweepy
+
+from waitamoment import WaitAMoment
 
 class Twitter:
     '''Twitter class'''
     def __init__(self):
         '''Constructor of the Twitter class'''
-        consumer_key = "Y72DI8YcAAtZQLv5YK9gV1VA3"
-        consumer_secret = "MOCUH66xd5vRIddAc226xqHu8BGxvR6VoBei868UmQen62pW37"
-        access_token = "2601681162-bfvNqsSeQgvHmTQNncUl2pUh6OCSNihtEZpH1Wn"
-        access_token_secret = "kGtrXXD3Aog5SMjaL87sl5avDl8utyAAw8Mwk9k4gRQV9"
+        pathtoconf = 'retweet.ini'
+        if not os.path.exists(pathtoconf):
+            print('the path you provided for yaspe configuration file does not exists')
+            sys.exit(1)
+        if not os.path.isfile(pathtoconf):
+            print('the path you provided for yaspe configuration is not a file')
+            sys.exit(1)
+        __config = ConfigParser.ConfigParser()
+        try:
+            with open(pathtoconf) as __conffile:
+                __config.readfp(__conffile)
+                if __config.has_section('main'):
+                    consumer_key = __config.get('main','consumer_key')
+                    consumer_secret = __config.get('main','consumer_secret')
+                    access_token = __config.get('main','access_token')
+                    access_token_secret = __config.get('main','access_token_secret')
+        except (ConfigParser.Error, IOError, OSError) as __err:
+            print(__err)
+            sys.exit(1)
+
         self.auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         self.auth.secure = True
         self.auth.set_access_token(access_token, access_token_secret)
@@ -29,21 +48,25 @@ class Twitter:
             # a file with the last sent tweet id exists, using it
             with open(__lasttweetidfile) as __desc:
                 __lasttweetid = int(__desc.read())
-            print("dernier tweet envoyé:{}").format(__lasttweetid)
+            print("last sent tweet:{}").format(__lasttweetid)
         else:
             # no previously sent tweet, get the first one (last of the list)
             __lasttweetid = __lasttweets[-1].id
         # extract the last 20 tweet ids
         __lasttweetids = [__tweet.id for __tweet in __lasttweets]
         __lasttweetids.reverse()
-        print(__lasttweetids)
-        print("derniers tweets:{}").format(' '.join([unicode(__j) for __j in __lasttweetids]))
+        print("last tweets:{}").format(' '.join([unicode(__j) for __j in __lasttweetids]))
         if __lasttweetid in __lasttweetids:
             __tweetstosend = __lasttweetids[__lasttweetids.index(__lasttweetid):]
             __tweetstosend.remove(__lasttweetid)
-            print("tweets à envoyer:{}").format(' '.join([unicode(__j) for __j in __tweetstosend]))
-            #for __i in __lasttweetids:
-            #    self.api.retweet(__i)
+            print("tweets to send:{}").format(' '.join([unicode(__j) for __j in __tweetstosend]))
+            for __i in __tweetstosend:
+                try:
+                    self.api.retweet(__i)
+                    print("tweet {} sent!").format(unicode(__i))
+                except (tweepy.error.TweepError) as __err:
+                    print("{}").format(unicode(__err))
+                WaitAMoment()
             # if we really sent tweets, store the last one
             if len(__tweetstosend) != 0:
                 with open(__lasttweetidfile, 'w') as __desc:
