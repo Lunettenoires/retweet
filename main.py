@@ -10,6 +10,12 @@ class Main(object):
     '''Main class'''
     def __init__(self):
         '''Constructor of the Main class'''
+        self.user_to_retweet = 'journaldupirate'
+        consumer_key = ''
+        consumer_secret = ''
+        access_token = ''
+        access_token_secret = ''
+        self.lasttweetidfile = 'lastsenttweetid'
         __pathtoconf = sys.argv[-1]
         if not os.path.exists(__pathtoconf):
             print('the path you provided for yaspe configuration file does not exists')
@@ -27,6 +33,7 @@ class Main(object):
                     consumer_secret = __config.get('main','consumer_secret')
                     access_token = __config.get('main','access_token')
                     access_token_secret = __config.get('main','access_token_secret')
+                    self.lasttweetidfile = __config.get('main','last_sent_tweet_id_file')
         except (ConfigParser.Error, IOError, OSError) as __err:
             print(__err)
             sys.exit(1)
@@ -41,11 +48,10 @@ class Main(object):
         '''lalalal'''
         # get the 20 last tweets
         __lasttweets = self.api.user_timeline(self.user_to_retweet)
-        __lasttweetidfile = 'lastsenttweetid'
 
-        if os.path.exists(__lasttweetidfile) and os.path.isfile(__lasttweetidfile):
+        if os.path.exists(self.lasttweetidfile) and os.path.isfile(self.lasttweetidfile):
             # a file with the last sent tweet id exists, using it
-            with open(__lasttweetidfile) as __desc:
+            with open(self.lasttweetidfile) as __desc:
                 __lasttweetid = int(__desc.read())
             print("last sent tweet:{}").format(__lasttweetid)
         else:
@@ -68,5 +74,5 @@ class Main(object):
                 WaitAMoment()
             # if we really sent tweets, store the last one
             if len(__tweetstosend) != 0:
-                with open(__lasttweetidfile, 'w') as __desc:
+                with open(self.lasttweetidfile, 'w') as __desc:
                     __desc.write(unicode(__tweetstosend[-1]))
