@@ -4,7 +4,7 @@ import os.path
 import sys
 import tweepy
 
-from waitamoment import WaitAMoment
+from retweet.waitamoment import WaitAMoment
 
 class Main(object):
     '''Main class'''

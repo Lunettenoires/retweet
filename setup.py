@@ -18,7 +18,6 @@ from setuptools import setup
 import os.path
 
 CLASSIFIERS = [
-    'Intended Audience :: System Administrators',
     'Intended Audience :: End Users/Desktop',
     'Environment :: Console',
     'License :: OSI Approved :: GNU General Public License (GPL)',
