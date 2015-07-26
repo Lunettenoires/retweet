@@ -1,10 +1,15 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import ConfigParser
+import os.path
+import sys
+import tweepy
 
-class Retweet(object):
-    '''Retweet class'''
+from waitamoment import WaitAMoment
+
+class Main(object):
+    '''Main class'''
     def __init__(self):
-        '''Constructor of the Retweet class'''
+        '''Constructor of the Main class'''
         __pathtoconf = sys.argv[-1]
         if not os.path.exists(__pathtoconf):
             print('the path you provided for yaspe configuration file does not exists')
@@ -65,7 +70,3 @@ class Retweet(object):
             if len(__tweetstosend) != 0:
                 with open(__lasttweetidfile, 'w') as __desc:
                     __desc.write(unicode(__tweetstosend[-1]))
-
-if __name__ == '__main__':
-    Retweet()
-    sys.exit(0)
