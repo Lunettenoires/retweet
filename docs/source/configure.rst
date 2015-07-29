@@ -1,4 +1,5 @@
 Configure Retweet
+=================
 
 In order ton configure Retweet, you need to create a retweet.ini file (or any name you prefer, finishing with the extension .ini) with the following parameters::
 
