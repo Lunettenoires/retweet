@@ -1,7 +1,9 @@
 Configure Retweet
 =================
 
-In order ton configure Retweet, you need to create a retweet.ini file (or any name you prefer, finishing with the extension .ini) with the following parameters::
+As a prerequisite to use Retweet, you need a Twitter app. Log in Twitter, go to https://apps.twitter.com, create an app and generate the access token.
+
+In order to configure Retweet, you need to create a retweet.ini file (or any name you prefer, finishing with the extension .ini) with the following parameters::
 
     [main]
     screen_name_of_the_user_to_retweet=journalduhacker
