@@ -13,9 +13,9 @@ or [read it online](https://retweet.readthedocs.org/en/latest/).
 
         # tar zxvf retweet-0.1.tar.gz
         # cd retweet
-        # python3.4 setup.py install
+        # python2.7 setup.py install
         # # or
-        # python3.4 setup.py install --install-scripts=/usr/bin
+        # python2.7 setup.py install --install-scripts=/usr/bin
 
 ### Use Retweet
 
